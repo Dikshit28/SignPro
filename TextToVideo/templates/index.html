@@ -12,12 +12,18 @@
         <div>
             <h1>Text To Video</h1>
             <form method="post">
+                <label for="file-type">Choose a file type:</label>
+                <select name="file-type" id="file-type">
+                    <option value="ttv">Text to Video</option>
+                    <option value="tta">Text to Audio</option>
+                </select>
                 <input type="text" name="content" id="content" placeholder="content..">
                 <button type="submit">Convert</button>
             </form>
         </div>
         {% for post in posts %}
-        <h1>{{post}}</h1>
+        <h1>{{post[1]}}</h1>
+        {% if post[0]==0 %}
         <video controls width="250">
 
             <source src="{{ url_for('static', filename='POST.webm') }}" type="video/webm">
@@ -26,6 +32,16 @@
         </video>
         <p> Download the Video <a href="{{ url_for('static', filename='POST.webm') }}" target="_blank"
                 rel="noopener noreferrer">Here!</a> </p>
+        {% else %}
+        <audio controls>
+
+            <source src="{{ url_for('static', filename='audio.mp3') }}" type="audio/mpeg">
+
+            Sorry, your browser does not support the audio element.
+        </audio>
+        <p> Download the audio <a href="{{ url_for('static', filename='audio.mp3') }}" target="_blank"
+                rel="noopener noreferrer">Here!</a> </p>
+        {% endif %}
         {% endfor %}
     </body>
 

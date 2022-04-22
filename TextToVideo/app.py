@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from TextToVideo import text_to_video
+from TextToAudio import text_to_audio
 
 app = Flask(__name__,static_folder='static',template_folder='templates')
 
@@ -12,12 +13,17 @@ posts = []
 
 def index():
     if request.method == "POST":
+        option=request.form.get("file-type")
         text = request.form.get("content")
-        print(text)
-        text_to_video(text)
-        posts.append(text.upper())
-        print(posts,posts[0])
+        if option=='ttv':
+            text_to_video(text)
+            key=0
+        if option == 'tta':
+            text_to_audio(text)
+            key=1
+        posts.append((key,text))
     return render_template("index.html", posts=posts)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

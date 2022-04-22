@@ -24,9 +24,8 @@ def text_to_video(string):
 #         cv2.waitKey(800)
 #         cv2.destroyAllWindows()
     name=cwd+'/TextToVideo/static/POST.avi'
-    print(name)
     out = cv2.VideoWriter(name,cv2.VideoWriter_fourcc(*'DIVX'), 1.5, size)
- 
+
     for i in img_array:
         out.write(i)
     out.release()
