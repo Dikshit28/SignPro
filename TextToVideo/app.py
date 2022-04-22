@@ -1,4 +1,3 @@
-from turtle import pos
 from flask import Flask, render_template, request
 from TextToVideo import text_to_video
 
