@@ -3,7 +3,7 @@ from TextToVideo import text_to_video
 from TextToAudio import text_to_audio
 import runner
 
-app = Flask(__name__, static_folder='templates/assets',
+app = Flask(__name__, static_folder='static/assets',
             template_folder='templates')
 # flask_index.html
 posts = []
