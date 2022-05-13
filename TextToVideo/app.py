@@ -1,16 +1,16 @@
 from flask import Flask, render_template, request, Response
 from TextToVideo import text_to_video
 from TextToAudio import text_to_audio
-import cv2
 import runner
 
-app = Flask(__name__, static_folder='static', template_folder='templates')
+app = Flask(__name__, static_folder='templates/assets',
+            template_folder='templates')
 # flask_index.html
 posts = []
 
 
 @app.route('/', methods=["GET", "POST"])
-@app.route('/flask_index', methods=["GET", "POST"])
+@app.route('/services', methods=["GET", "POST"])
 def index():
     if request.method == "POST":
         option = request.form.get("file-type")
@@ -25,7 +25,7 @@ def index():
             text = runner.count_fingers()
             key = 2
         posts.append((key, text))
-    return render_template("flask_index.html", posts=posts)
+    return render_template("services.html", posts=posts)
 
 
 '''
